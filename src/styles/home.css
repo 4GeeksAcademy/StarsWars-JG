@@ -1,0 +1,240 @@
+body{
+    background: linear-gradient(to bottom, #000000, #434343);
+    background-attachment: fixed;
+  }
+
+.burboBox {
+    position:fixed;
+    width: 100%;
+    height:100vh;
+    overflow:hidden;
+    z-index: -1;
+}
+
+.burboBox-parent {
+    position: relative;
+  }
+  
+
+.bubbles{
+    position: relative;
+    display: flex;
+}
+
+.bubbles span{
+    position:relative;
+    width: 27px;
+    height: 27px;
+    background: #5e6e72;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow:0 0 0 10px #4fc3dc44,
+    0 0 50px #b8b6b7,
+    0 0 100px #b8b6b7;
+    animation: animate 70s linear infinite; 
+    animation-duration: calc(150s / var(--i));
+}
+
+.bubbles span:nth-child(even) {
+    background: #dddddd;
+    box-shadow: 0 0 0 10px #a6a2a44d,
+    0 0 50px #a4a4a496,
+    0 0 100px #b8b6b7;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+    100%{
+        transform: translateY(-10vh) scale(0.3);
+    }
+}
+
+
+.glass-effect {
+    
+    background: rgba(217, 209, 209, 0.095); 
+    backdrop-filter: blur(10px); 
+    border-radius: 15px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    transition:  0.5s all ease-in-out ; 
+  }
+  
+  .glass-effect:hover {
+    background: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+  }
+
+
+  #sw{
+    width: 6vw;
+    height: 5vh;
+  }
+
+  .separated > li{
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: 700;
+  }
+
+  .bg-dark  {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.100) 0%, rgba(0, 0, 0, 0.443) 50%);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  }
+
+
+  .nav-stars:hover {
+    color: #f37602;    
+    transition: 0.3s all ease-in-out;
+  }
+  
+
+ 
+
+  .mini-nav {
+    transform: scale(1); 
+    transition: 0.9s all ease-in-out;
+  }
+  .mini-nav:hover {
+    transform: scale(1.05); 
+    transition: 0.9s all ease-in-out;
+  }
+  .mini-nav:hover {
+    transition: 0.6s all ease-in-out;
+    color: #f37602; 
+    filter: drop-shadow(5px 7px 7px rgb(255, 204, 0));  
+  }
+
+  .nav-link {
+    color: #ffffff;
+    transition: 0.6s all ease-in-out;   
+  }
+  .nav-link:hover {
+    transition: 0.6s all ease-in-out;
+    color: #f37602; 
+  }
+
+
+
+  .slider {
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .slider-inner {
+    display: flex;
+    transition: transform 0.5s all ease-in-out;
+  }
+
+  .slider-card {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+
+  .slider-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .slider-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .slider-card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .slider-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+  }
+
+  .slider-indicator {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .slider-indicator.active {
+    background-color: #007bff;
+  }
+
+
+  #imPers{
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(5px 7px 7px rgba(247, 244, 244, 0.633));
+  }
+  #favorite{
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(5px 7px 7px rgb(255, 255, 255));
+  }
+  #favorite:hover {
+    filter: drop-shadow(5px 7px 7px rgb(255, 204, 0)); 
+   }
+
+   #cule{
+    width: 45px;
+    height: 40px;
+    filter: drop-shadow(5px 7px 7px rgb(255, 255, 255));
+  }
+   #cule:hover{
+    filter: drop-shadow(5px 7px 7px rgb(255, 204, 0));
+    }
+
+
+.sombra-slide{
+width: 50px;
+}
+.sombra-slide:hover{
+background-color: #3f3f3f6e;
+}
+
+
+.carousel-item .carousel-item-active {
+  min-height: 300px; /* Ajusta esto según sea necesario */
+}
+
+.card-group .card {
+  height: 100%; /* Hace que las tarjetas ocupen toda la altura disponible */
+}
+
+.card-group .glass-effect {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-group .glass-effect img {
+  height: 300px; /* Ajusta esto según sea necesario */
+  object-fit: cover; /* Mantiene la proporción de la imagen */
+  flex-shrink: 0;
+}
+
+.card-group .glass-effect .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
