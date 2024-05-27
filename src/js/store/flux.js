@@ -1,15 +1,14 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
+            people: [],
             planets: [],
             vehicles: [],
-            people: [],
-            characterDetail: {},
-            planetsDetail: {},
             favorites: [],
-
-
-
+            planetDetail: {},
+            starshipDetail: {},
+            characterDetail: {},
+            
 
             demo: [
                 {
@@ -26,14 +25,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         },
         actions: {
 
-            fetchPlanets: async () => {
+             fetchPlanets: async () => {
                 try {
                     const response = await fetch('https://www.swapi.tech/api/planets/');
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     const data = await response.json();
-                    console.log('Planets data:', data.results); // Log de los datos de planetas
                     setStore({ planets: data.results });
                 } catch (error) {
                     console.error('There was a problem with the fetch operation:', error);
@@ -48,7 +46,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                         throw new Error('Network response was not ok');
                     }
                     const data = await response.json();
-                    console.log('Vehicles data:', data.results); // Log de los datos de vehículos
                     setStore({ vehicles: data.results });
                 } catch (error) {
                     console.error('There was a problem with the fetch operation:', error);
@@ -61,12 +58,49 @@ const getState = ({ getStore, getActions, setStore }) => {
                         throw new Error('Network response was not ok');
                     }
                     const data = await response.json();
-                    console.log('People data:', data.results); // Log de los datos de personas
                     setStore({ people: data.results });
                 } catch (error) {
                     console.error('There was a problem with the fetch operation:', error);
                 }
             },
+
+
+            getCharacterDetail: (id) => {
+                return fetch(`https://www.swapi.tech/api/people/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setStore({ characterDetail: data.result.properties });
+                        return data.result.properties;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            },
+
+            getPlanetDetail: (id) => {
+                return fetch(`https://www.swapi.tech/api/planets/${id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setStore({ planetDetail: data.result.properties });
+                        return data.result.properties;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            },
+
+            getStarshipDetail: async (id) => {
+                try {
+                    const response = await fetch(`https://www.swapi.tech/api/vehicles/${id}`);
+                    const data = await response.json();
+                    setStore({ starshipDetail: data.result.properties });
+                    return data.result;
+                } catch (error) {
+                }
+            },
+            
+
+              
             addFavorite: (item) => {
                 const store = getStore();
                 if (!store.favorites.find(fav => fav.uid === item.uid)) {
@@ -84,6 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 await getActions().fetchPlanets();
                 await getActions().fetchVehicles();
                 await getActions().fetchPeople();
+                await getActions().getStarshipDetail();
             },
             
         }

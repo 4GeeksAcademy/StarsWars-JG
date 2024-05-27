@@ -1,50 +1,55 @@
 import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
 
-const getImageFav = (type, id) => {
-  switch (type) {
-    case 'characters':
-      return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`;
-    case 'planets':
-      return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`;
-    case 'vehicles':
-      return `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg`;
-    default:
-      return 'https://starwars-visualguide.com/assets/img/placeholder.jpg';
-  }
-};
 
 const FavoritesList = () => {
   const { store, actions } = useContext(Context);
 
+
+
+  const handleMoreDetails = (type, id) => {
+    setDetailType(type);
+    if (type === 'characters') {
+        actions.getCharacterDetail(id).then(detail => {
+            setSelectedDetail(detail);
+        });
+    } else if (type === 'planets') {
+        actions.getPlanetDetail(id).then(detail => {
+            setSelectedDetail(detail);
+        });
+    } else if (type === 'vehicles') {
+        actions.getStarshipDetail(id).then(detail => {
+            setSelectedDetail(detail);
+        });
+    }
+};
+
+
   return (
-    <div className="container">
-      <h2>Favoritos</h2>
-      <div className="row row-cols-1 row-cols-md-3 g-3">
+    <>
+      <div className="container">
+      <div className="d-flex aling-content-center"> 
+        <h1 className="text-center fs-1 text-warning mt-3">FAVORITOS</h1>
+      </div>
+      <div className="list-group w-50 ">
         {store.favorites.map((favorite) => (
-          <div className="col" key={favorite.uid}>
-            <div className="card glass-effect text-white">
-              <img
-                className="card-img-top img-thumbnails"
-                src={getImageFav(favorite.type, favorite.uid)}
-                alt={favorite.name}
-              />
-              <div className="card-body">
-                <h5 className="card-title">
-                  {favorite.name}
-                  <button
-                    onClick={() => actions.removeFavorite(favorite)}
-                    className="btn btn-danger text-white btn-sm float-end"
-                  >
-                    Eliminar
-                  </button>
-                </h5>
+          <div className="list-group-item list-group-item-action flex-column align-items-start" key={favorite.uid}>
+            <div className="d-flex justify-content-start"> {/* Alineación al inicio */}
+              <div className="flex-grow-1 ms-3">
+                <h5 className="mb-1">{favorite.name}</h5>
+                <button
+                  onClick={() => actions.removeFavorite(favorite)}
+                  className="btn btn-danger text-white btn-sm float-end"
+                >
+                  Eliminar
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

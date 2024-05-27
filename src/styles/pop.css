@@ -1,0 +1,13 @@
+.popup {
+  position: fixed;
+  top: 50%; /* Centrar verticalmente */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translate(-50%, -50%); /* Centrar completamente */
+  background-color: white;
+  width: 300px; /* Ancho del popup */
+  height: 200px; /* Alto del popup */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+  z-index: 1000; /* Asegura que esté por encima del resto del contenido */
+  padding: 20px; /* Espacio interno */
+}

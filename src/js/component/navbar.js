@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import { Link } from "react-router-dom";
+import { Context } from '../store/appContext.js';
+
 
 export const Navbar = () => {
+	const { store,actions } = useContext(Context);
+
 	return (
-		<nav className="navbar bg-dark navbar-expand-lg ">
+		<nav className="navbar bg-dark navbar-expand-lg sticky-top">
 			<div className="container-fluid">
 				
 			<a  href="/" role="button">
@@ -30,18 +34,32 @@ export const Navbar = () => {
 							<Link to="/planetas" className="nav-link text-reset">PLANETAS</Link>
 						</li>
 
-						<li className="nav-item dropdown ">
+						<li className="nav-item dropdown mb-4">
 							<a className="nav-link dropdown-toggle  text-warning" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							FAVORITOS
 						</a>
 
 						
 
-							<ul className="dropdown-menu sub glass-efect z-3">
-								<li><Link to="/action" className="dropdown-item text-reset">Action</Link></li>
-								<li><Link to="/another-action" className="dropdown-item text-reset">Another action</Link></li>
-								<li><Link to="/something-else" className="dropdown-item text-reset">Something else here</Link></li>
-							</ul>
+						<ul className="dropdown-menu dropdown-menu-scrollable " aria-labelledby="favoritesDropdown">
+							{store.favorites.length === 0 ? (
+							<li className="dropdown-item">No hay favoritos</li>
+							) : (
+							store.favorites.map((favorite) => (
+								<li className="dropdown-item d-flex align-items-center" key={favorite.uid}>
+								<p className="mx-3">
+									{favorite.name}
+								</p>
+								<button
+									onClick={() => actions.removeFavorite(favorite)}
+									className="btn btn-danger btn-sm ms-auto "
+								>
+									<i className="fa-regular fa-trash-can"></i>
+								</button>
+								</li>
+							))
+							)}
+						</ul>
 
 						</li>
 						</ul>

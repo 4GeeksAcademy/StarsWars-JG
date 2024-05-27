@@ -238,3 +238,26 @@ background-color: #3f3f3f6e;
   flex-direction: column;
   justify-content: space-between;
 }
+
+
+
+.dropdown-menu-scrollable {
+  max-height: 300px; /* Ajusta esta altura según tus necesidades */
+  overflow-y: auto;
+}
+
+
+
+.miniEffect {
+    
+  background: rgba(66, 66, 66, 0.438); 
+  backdrop-filter: blur(10px); 
+  border-radius: 15px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  transition:  0.5s all ease-in-out ; 
+}
+
+.miniEffect:hover {
+  background: rgba(29, 29, 29, 0.233); 
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+}
